@@ -11,8 +11,11 @@ char l_carta, nome[50]; //variavel char para armazenar letras//
 
 int main(void) {
 
-    char confirmacao; //variavel char para armazenar letras//
+    char confirmacao, confirmacao2; //variavel char para armazenar letras//
  struct carta carta1; //estrutura para armazenar os dados da carta//
+
+ struct carta carta2; //estrutura para armazenar os dados da carta//
+ 
 
 
     printf("---------------BEM VINDO AO JOGO SUPER TRUNFO-------------\n");
@@ -85,6 +88,87 @@ do { //laço de repetição para confirmar os dados inseridos//
             printf("PIB PER CAPITA: %.2f$\n", carta1.pib_capital);
             printf("PONTOS TURISTICOS: %i\n", carta1.p_turistico);
             printf("CODIGO DA CARTA: %c%i\n", carta1.l_carta, carta1.n_carta);
+
+            // ------------------------------------------------------------------- //
+            // ---------------------------- CARTA 02 ----------------------------- //
+            // ------------------------------------------------------------------- //
+
+
+                    printf("---------------VAMOS INICIAR A CRIAÇÃO DA CARTA (02)-------------\n");
+                    getchar(); //função para aguardar o usuario pressionar qualquer tecla do teclado//
+
+do { //laço de repetição para confirmar os dados inseridos//
+        printf("DIGITE O NOME DA CIDADE:\n");
+        scanf("%[^\n]", &carta2.nome);  //%[^\n]usado para ler a quebra de linha ocasionada pelo espaço//
+
+            printf("DIGITE A POPULAÇÃO DA CIDADE:\n");
+            scanf(" %d", &carta2.populacao);
+
+        printf("DIGITE A AREA DA CIDADE:\n");
+        scanf(" %lf", &carta2.area);
+
+            printf("DIGITE O PIB DA CIDADE:\n");
+            scanf(" %lf", &carta2.PIB);
+
+        printf("DIGITE A QUANTIDADES DE PONTOS TURISTICOS DA CIDADE:\n");
+        scanf(" %i", &carta2.p_turistico);
+
+        do { //laço de repetição para confirmar os dados inseridos//
+            printf("DIGITE O CODIGO DA CARTA LETRA (A-H), SEGUIDA DE UM NUMERO (1-4):\n");
+            scanf(" %c%d", &carta2.l_carta, &carta2.n_carta);
+
+             if ((carta2.l_carta < 'A' || carta2.l_carta > 'H') || (carta2.n_carta < 1 || carta2.n_carta > 4)) { 
+                //condição para verificar se a letra digitada esta entre A e H e se o numero digitado esta entre 1 e 4//
+                printf("Entrada invalida! Por favor, digite uma letra entre A e H e um numero entre 1 e 4.\n");
+            }
+
+        } while (carta2.l_carta < 'A' || carta2.l_carta > 'H' || carta2.n_carta < 1 || carta2.n_carta > 4);
+
+            printf("---------------CONFIRMAÇÃO DE DADOS INSERIDOS DA CARTA (02)-------------\n");
+
+            printf("NOME DA CIDADE: %s\n", carta2.nome);
+            printf("POPULAÇÃO: %i\n", carta2.populacao);
+            printf("AREA: %.2fKM\n", carta2.area);
+            printf("PIB: %.2f$\n", carta2.PIB);
+            printf("PONTOS TURISTICOS: %i\n", carta2.p_turistico);
+            printf("CODIGO DA CARTA: %c%i\n", carta2.l_carta, carta2.n_carta);
+//condiçao para confirmar os dados inseridos//
+            printf("---------PARA CONFIRMAR DIGITE 'S' / PARA DIGITAR NOVAMENTE DIGITE 'N'-----------\n");
+            scanf(" %c", &confirmacao2);
+
+
+} while (confirmacao2 != 's' && confirmacao2 != 'S');
+
+    //calculos para densidade populacional e PIB per capita//
+    carta2.densidade_populacional = carta2.populacao / carta2.area; //formula para calcular a densidade populacional//
+    carta2.pib_capital = carta2.PIB / carta2.populacao; //formula para calcular o PIB per capita//
+
+
+    printf("-------TODAS INFORMAÇOES DA CARTA (02)-------\n");
+        printf("NOME DA CIDADE: %s\n", carta2.nome);
+        printf("POPULAÇAO: %i\n", carta2.populacao);
+        printf("AREA: %.2fKM\n", carta2.area);
+        printf("DENSIDADE POPULACIONAL: %.2f PESSOAS/KM²\n", carta2.densidade_populacional);
+
+//condiçoes para exibir o PIB em trilhoes, bilhoes, milhoes e reais//
+            if (carta2.PIB >= 1e12) {
+                printf("PIB: %.2f TRILHOES DE REAIS\n", carta2.PIB / 1e12);
+            } else if (carta2.PIB >= 1e9){
+                printf("PIB: %.2f BILHÕES DE REAIS\n", carta2.PIB / 1e9);
+            } else if (carta2.PIB >= 1e6){
+                printf("PIB: %.2f MILHÕES DE REAIS\n", carta2.PIB / 1e6);
+            } else {
+                printf("PIB: %.2f REAIS\n",carta2.PIB);
+            }
+
+            printf("PIB PER CAPITA: %.2f$\n", carta2.pib_capital);
+            printf("PONTOS TURISTICOS: %i\n", carta2.p_turistico);
+            printf("CODIGO DA CARTA: %c%i\n", carta2.l_carta, carta2.n_carta);
+
+
+
+
+
             
                     
 //------------------------------------------------------------------------------------------------------------//
