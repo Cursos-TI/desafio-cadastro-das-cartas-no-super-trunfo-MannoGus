@@ -2,7 +2,7 @@
 #include <string.h>
 
 struct carta {
-    int populaçao, n_carta, p_turistico; //variavel int para armazer numeros inteiros//
+    int populacao, n_carta, p_turistico; //variavel int para armazer numeros inteiros//
 double PIB, area, densidade_populacional, pib_capital; //variavel double para armazenar numeros de ponto flutuantes e numeros inteiros//
 char l_carta, nome[50]; //variavel char para armazenar letras//
 
@@ -11,7 +11,7 @@ char l_carta, nome[50]; //variavel char para armazenar letras//
 
 int main(void) {
 
-    char confirmaçao; //variavel char para armazenar letras//
+    char confirmacao; //variavel char para armazenar letras//
  struct carta carta1; //estrutura para armazenar os dados da carta//
 
 
@@ -23,7 +23,7 @@ do { //laço de repetição para confirmar os dados inseridos//
         scanf("%[^\n]", &carta1.nome);  //%[^\n]usado para ler a quebra de linha ocasionada pelo espaço//
 
             printf("DIGITE A POPULAÇÃO DA CIDADE:\n");
-            scanf(" %d", &carta1.populaçao);
+            scanf(" %d", &carta1.populacao);
 
         printf("DIGITE A AREA DA CIDADE:\n");
         scanf(" %lf", &carta1.area);
@@ -48,26 +48,26 @@ do { //laço de repetição para confirmar os dados inseridos//
             printf("---------------CONFIRMAÇÃO DE DADOS INSERIDOS DA CARTA (01)-------------\n");
 
             printf("NOME DA CIDADE: %s\n", carta1.nome);
-            printf("POPULAÇÃO: %i\n", carta1.populaçao);
+            printf("POPULAÇÃO: %i\n", carta1.populacao);
             printf("AREA: %.2fKM\n", carta1.area);
             printf("PIB: %.2f$\n", carta1.PIB);
             printf("PONTOS TURISTICOS: %i\n", carta1.p_turistico);
             printf("CODIGO DA CARTA: %c%i\n", carta1.l_carta, carta1.n_carta);
 //condiçao para confirmar os dados inseridos//
             printf("---------PARA CONFIRMAR DIGITE 'S' / PARA DIGITAR NOVAMENTE DIGITE 'N'-----------\n");
-            scanf(" %c", &confirmaçao);
+            scanf(" %c", &confirmacao);
 
 
-} while (confirmaçao != 's' && confirmaçao != 'S');
+} while (confirmacao != 's' && confirmacao != 'S');
 
     //calculos para densidade populacional e PIB per capita//
-    carta1.densidade_populacional = carta1.populaçao / carta1.area; //formula para calcular a densidade populacional//
-    carta1.pib_capital = carta1.PIB / carta1.populaçao; //formula para calcular o PIB per capita//
+    carta1.densidade_populacional = carta1.populacao / carta1.area; //formula para calcular a densidade populacional//
+    carta1.pib_capital = carta1.PIB / carta1.populacao; //formula para calcular o PIB per capita//
 
 
     printf("-------TODAS INFORMAÇOES DA CARTA (01)-------\n");
         printf("NOME DA CIDADE: %s\n", carta1.nome);
-        printf("POPULAÇAO: %i\n", carta1.populaçao);
+        printf("POPULAÇAO: %i\n", carta1.populacao);
         printf("AREA: %.2fKM\n", carta1.area);
         printf("DENSIDADE POPULACIONAL: %.2f PESSOAS/KM²\n", carta1.densidade_populacional);
 
