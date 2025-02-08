@@ -2,20 +2,22 @@
 #include <string.h>
 
 struct carta {
-    int populacao, n_carta, p_turistico; //variavel int para armazer numeros inteiros//
-double PIB, area, densidade_populacional, pib_capital; //variavel double para armazenar numeros de ponto flutuantes e numeros inteiros//
+    int populacao, n_carta, p_turistico, ponto; //variavel int para armazer numeros inteiros//
+double PIB, area, densidade_populacional, pib_capital, total; //variavel double para armazenar numeros de ponto flutuantes e numeros inteiros//
 char l_carta, nome[50]; //variavel char para armazenar letras//
 
-};
+
+}; //estrutura para armazenar os dados da carta//
 
 
 int main(void) {
 
     char confirmacao, confirmacao2; //variavel char para armazenar letras//
  struct carta carta1; //estrutura para armazenar os dados da carta//
+ carta1.ponto = 0 ; //variavel para armazenar os pontos da carta//
 
  struct carta carta2; //estrutura para armazenar os dados da carta//
- 
+ carta2.ponto = 0 ; //variavel para armazenar os pontos da carta//
 
 
     printf("---------------BEM VINDO AO JOGO SUPER TRUNFO-------------\n");
@@ -48,7 +50,7 @@ do { //laço de repetição para confirmar os dados inseridos//
 
         } while (carta1.l_carta < 'A' || carta1.l_carta > 'H' || carta1.n_carta < 1 || carta1.n_carta > 4);
 
-            printf("---------------CONFIRMAÇÃO DE DADOS INSERIDOS DA CARTA (01)-------------\n");
+            printf("---------------CONFIRMAÇÃO DE DADOS DA CIDADE %s------------\n", carta1.nome);
 
             printf("NOME DA CIDADE: %s\n", carta1.nome);
             printf("POPULAÇÃO: %i\n", carta1.populacao);
@@ -68,7 +70,7 @@ do { //laço de repetição para confirmar os dados inseridos//
     carta1.pib_capital = carta1.PIB / carta1.populacao; //formula para calcular o PIB per capita//
 
 
-    printf("-------TODAS INFORMAÇOES DA CARTA (01)-------\n");
+    printf("-------TODAS INFORMAÇOES DA CIDADE %s-------\n", carta1.nome);
         printf("NOME DA CIDADE: %s\n", carta1.nome);
         printf("POPULAÇAO: %i\n", carta1.populacao);
         printf("AREA: %.2fKM\n", carta1.area);
@@ -124,7 +126,7 @@ do { //laço de repetição para confirmar os dados inseridos//
 
         } while (carta2.l_carta < 'A' || carta2.l_carta > 'H' || carta2.n_carta < 1 || carta2.n_carta > 4);
 
-            printf("---------------CONFIRMAÇÃO DE DADOS INSERIDOS DA CARTA (02)-------------\n");
+            printf("---------------CONFIRMAÇÃO DE DADOS CIDADE %s-------------\n", carta2.nome);
 
             printf("NOME DA CIDADE: %s\n", carta2.nome);
             printf("POPULAÇÃO: %i\n", carta2.populacao);
@@ -144,7 +146,7 @@ do { //laço de repetição para confirmar os dados inseridos//
     carta2.pib_capital = carta2.PIB / carta2.populacao; //formula para calcular o PIB per capita//
 
 
-    printf("-------TODAS INFORMAÇOES DA CARTA (02)-------\n");
+    printf("-------TODAS INFORMAÇOES DA CIDADE %s-------\n", carta2.nome);
         printf("NOME DA CIDADE: %s\n", carta2.nome);
         printf("POPULAÇAO: %i\n", carta2.populacao);
         printf("AREA: %.2fKM\n", carta2.area);
@@ -164,6 +166,140 @@ do { //laço de repetição para confirmar os dados inseridos//
             printf("PIB PER CAPITA: %.2f$\n", carta2.pib_capital);
             printf("PONTOS TURISTICOS: %i\n", carta2.p_turistico);
             printf("CODIGO DA CARTA: %c%i\n", carta2.l_carta, carta2.n_carta);
+
+
+            // ------------------------------------------------------------------- //
+            // ---------------------------- COMPARAÇÃO --------------------------- //
+            // ------------------------------------------------------------------- //   
+
+
+
+            printf("VAMOS COMPRAR AS IMFORMACOES DA CARTAS DIGITADAS\n");
+
+             // COMPARACAO DA POPULACAO //
+
+            printf("%s  /  %s\n", carta1.nome, carta2.nome);
+            if (carta1.populacao > carta2.populacao) {
+                carta1.ponto++; //incremento de ponto para carta vencedora//
+                printf("%i  /  %i\n // CIDADE: %s GANPU, POIS TEM A MAIOR POPULCAO\n", 
+                carta1.populacao, carta2.populacao, carta1.nome);
+                } // IF END
+
+            else{
+
+                printf("%i  /  %i -- CIDADE: %s GANHOU, POIS TEM A MAIOR POPULACAO\n", 
+                carta1.populacao, carta2.populacao, carta2.nome);
+                carta2.ponto++; //incremento de ponto para carta vencedora//
+                } // ELSE END 
+
+
+                // COMPARACAO DA AREA EM KM² //
+
+                if (carta1.area > carta2.area) {
+                    printf("%.2f KM²  /  %.2f KM² -- CIDADE: %s GANHOU, POIS TEM A MAIOR AREA\n",
+                    carta1.area, carta2.area, carta1.nome);
+                    carta1.ponto++; //incremento de ponto para carta vencedora//
+
+                } // IF END
+
+                       else {  
+                        printf("%.2f KM²  /  %.2f KM² -- CIDADE: %s GANHOU POIS TEM A MAIOR AREA\n",
+                        carta1.area, carta2.area, carta2.nome); 
+                        carta2.ponto++; //incremento de ponto para carta vencedora//                    
+
+                }  // ELSE END    
+
+
+                // COMPARACAO DESIDADE DA POPULACAO //
+
+                if (carta1.densidade_populacional < carta2.densidade_populacional) {
+                    printf("%.2f PESSOAS POR KM²  /  %.2f PESSOAS POR KM² -- CIDADE: %s GANHOU, POIS TEM A MENOR DENSIDADE POPULACIONAL/n",
+                    carta1.densidade_populacional, carta2.densidade_populacional, carta1.nome);
+                    carta1.ponto++; //incremento de ponto para carta vencedora//
+
+                } // IF END
+
+                       else  {  
+                        printf("%.2f PESSOAS POR KM²  /  %.2f PESSOAS POR KM² -- CIDADE: %s GANHOU POIS TEM A MENOR DENSIDADE POPULACIONAL\n",
+                        carta1.densidade_populacional, carta2.densidade_populacional, carta2.nome); 
+                        carta2.ponto++; //incremento de ponto para carta vencedora//                    
+                }  // ELSE IF END   
+
+                //  COMPARACAO DO PIB //
+
+                if (carta1.PIB > carta2.PIB) {
+                    printf("%.2f$  /  %.2f$ -- CIDADE: %s GANHOU, POIS TEM O MAIOR PIB/n",
+                    carta1.PIB, carta2.PIB, carta1.nome);
+                    carta1.ponto++; //incremento de ponto para carta vencedora//
+                } // IF END
+
+                        else if (carta1.PIB < carta2.PIB){
+                            printf("%.2f$   /  %.2f$ -- CIDADE: %s GANHOU, POIS TEM O MAIOR PIB/n");
+                            carta2.ponto++; //incremento de ponto para carta vencedora//
+                        }
+
+                // COMPARACAO DO PIB PER CAPITA // 
+
+                if (carta1.pib_capital > carta2.pib_capital) {
+                    printf("%.2f$ POR PESSOA  /  %.2f$ POR PESSOA -- CIDADE: %s GANHOU, POIS TEM O MAIOR PIB PER CAPITA/n");
+                    carta1.ponto++; //incremento de ponto para carta vencedora//
+                } //IF END
+
+                        else {
+                            printf("%.2f$ POR PESSOA  /  %.2f$ POR PESSOA -- CIDADE: %s GANHOU, POIS TEM O MAIOR PIB PER CAPITA/n");
+                            carta2.ponto++; //incremento de ponto para carta vencedora//
+                        } // ELSE END
+
+                        // COMPARACAO DOS PONTOS TURISTICOS //
+
+                        if (carta1.p_turistico > carta2.p_turistico) {
+                            printf("%i PONTOS TURISTICOS  /  %i PONTOS TURISTICOS -- CIDADE: %s GANHOU POIS TEM A MAIOR QUANTIDADE DE PONTOS TURISTICOS/n",
+                            carta1.p_turistico, carta2.p_turistico, carta1.nome);
+                            carta1.ponto++; //incremento de ponto para carta vencedora//
+                        }  // IF END
+
+                        else {
+                            printf("%i PONTOS TURISTICOS  /  %i PONTOS TURISTICOS -- CIDADE: %s GANHOU POIS TEM A MAIOR QUANTIDADE DE PONTOS TURISTICOS/n",
+                            carta1.p_turistico, carta2.p_turistico, carta2.nome);
+                            carta2.ponto++; //incremento de ponto para carta vencedora//
+                        }     // ELSE END
+
+                         
+                         // CARTA VENCEDORA //
+
+                         printf("--------------------- RESULTADO FINAL ---------------------\n");
+                          if(carta1.ponto > carta2.ponto) {
+                            printf("CIDADE VENCEDORA: %s\n", carta1.nome);
+                          } //END IF
+
+                            else if (carta1.ponto < carta2.ponto) {
+                                printf("CIDADE VENCEDORA: %s\n", carta2.nome);
+                            } //END ELSE IF
+    
+                            else {
+                                printf("EMPATE\n");
+                                printf("A CARTA COM A SOMA DE TODOS OS ATRIBUTOS MAIOR VENCE\n");
+                                carta1.total = carta1.populacao + carta1.area + carta1.PIB + carta1.p_turistico + carta1.densidade_populacional
+                                + carta1.pib_capital; //formula para somar todos os atributos da carta 1//
+
+                                carta2.total = carta2.populacao + carta2.area + carta2.PIB + carta2.p_turistico + carta2.densidade_populacional
+                                + carta2.pib_capital; //formula para somar todos os atributos da carta 2//
+
+                                printf("SOMA DOS ATRIBUTOS DA CIDADE %s: %.2f\n", carta1.nome, carta1.total);
+                                printf("SOMA DOS ATRIBUTOS DA CIDADE %s: %.2f\n", carta2.nome, carta2.total);
+
+                                if (carta1.total > carta2.total) {
+                                    printf("CIDADE VENCEDORA: %s \n", carta1.nome);
+                                }
+
+                                else {
+                                    printf("CIDADE VENCEDORA: %s \n", carta2.nome);
+                                }
+
+                                
+                            } //END ELSE
+
+
 
 
 
